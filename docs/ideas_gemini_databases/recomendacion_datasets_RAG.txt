@@ -1,0 +1,52 @@
+¡Excelente iniciativa! Construir un framework de RAG y un banco de pruebas es un paso fundamental. La calidad y variedad de tus datos de prueba definirán la robustez de tus soluciones.
+
+Aquí te recomiendo varios datasets, categorizados por el tipo de desafío que presentan, lo cual es ideal para probar distintas estrategias de RAG.
+
+### 1. Para Preguntas y Respuestas (Q&A) General y Extracción Precisa
+
+Estos son ideales para empezar y probar la capacidad de tu sistema para encontrar respuestas directas a preguntas específicas.
+
+*   **SQuAD 2.0 (Stanford Question Answering Dataset)**
+    *   **Descripción:** Es el estándar de oro. Contiene preguntas planteadas por humanos sobre artículos de Wikipedia. La versión 2.0 incluye preguntas sin respuesta posible en el texto, lo que es crucial para enseñar a tu RAG a "decir que no sabe" en lugar de inventar una respuesta.
+    *   **Caso de uso:** Probar la extracción de respuestas precisas.
+    *   **Cómo obtenerlo:** [SQuAD en Hugging Face Datasets](https://huggingface.co/datasets/squad_v2)
+
+*   **Natural Questions**
+    *   **Descripción:** Creado por Google, contiene preguntas reales de usuarios y respuestas encontradas en Wikipedia. Las respuestas pueden ser largas (un párrafo entero) o cortas (una o varias entidades), lo que permite probar diferentes granularidades de respuesta.
+    *   **Caso de uso:** Simular un buscador interno sobre una base de conocimiento extensa.
+    *   **Cómo obtenerlo:** [Natural Questions en Hugging Face Datasets](https://huggingface.co/datasets/natural_questions)
+
+### 2. Para Documentación Técnica y Bases de Conocimiento
+
+Las empresas viven de su documentación interna y externa. Estos datasets simulan ese entorno.
+
+*   **Documentación de una librería de código abierto (Ej: LangChain, LlamaIndex, Scikit-learn)**
+    *   **Descripción:** No es un dataset formal, pero es una de las pruebas más realistas. Clona el repositorio de una librería popular y usa su carpeta de documentación (`/docs`) como base de conocimiento. Suelen ser archivos Markdown (`.md`) o reStructuredText (`.rst`).
+    *   **Caso de uso:** Crear un asistente para desarrolladores, responder preguntas sobre APIs, guías de uso y conceptos. Probar estrategias de "chunking" (división de texto) en código y texto mixto.
+    *   **Cómo obtenerlo:** `git clone` del repositorio que elijas.
+
+*   **ELI5 (Explain Like I'm 5)**
+    *   **Descripción:** Un dataset de preguntas que requieren respuestas largas y explicativas, extraídas de Reddit. Obliga al modelo a no solo encontrar el fragmento relevante, sino a sintetizar información de múltiples fuentes para construir una respuesta coherente.
+    *   **Caso de uso:** Probar la capacidad de síntesis y generación de tu RAG, no solo de extracción.
+    *   **Cómo obtenerlo:** [ELI5 en Hugging Face Datasets](https://huggingface.co/datasets/eli5)
+
+### 3. Para Documentos Complejos y Densos (Financieros, Legales)
+
+Estos son un reto mayor y representan casos de uso de alto valor para las empresas.
+
+*   **Reportes Anuales de Empresas (Formulario 10-K)**
+    *   **Descripción:** Descarga los reportes 10-K de 2 o 3 empresas públicas desde la base de datos EDGAR de la SEC. Son documentos largos (cientos de páginas), estructurados en secciones, con tablas y lenguaje muy denso.
+    *   **Caso de uso:** Probar el RAG en documentos largos y complejos. Responder preguntas como "¿Cuál fue el ingreso neto de la empresa X en el último año fiscal?" o "¿Cuáles son los principales riesgos de mercado mencionados?".
+    *   **Cómo obtenerlo:** Búscalos en [SEC EDGAR Database](https://www.sec.gov/edgar/searchedgar/companysearch).
+
+*   **ContractNLI (Contractual Language Inference)**
+    *   **Descripción:** Un dataset para determinar si una hipótesis es respaldada, contradicha o no mencionada en un contrato.
+    *   **Caso de uso:** Excelente para probar la comprensión de lenguaje legal y las relaciones lógicas dentro de un texto, un desafío avanzado para cualquier RAG.
+    *   **Cómo obtenerlo:** [ContractNLI en Hugging Face Datasets](https://huggingface.co/datasets/contract_nli)
+
+### Estrategia Recomendada para tu Banco de Pruebas
+
+1.  **Empieza Simple:** Usa **SQuAD** para validar que tu pipeline básico (carga, división, embedding, recuperación, generación) funciona correctamente.
+2.  **Añade Realismo:** Usa la **documentación de una librería** para afinar tus estrategias de chunking y el manejo de texto semi-estructurado.
+3.  **Aumenta la Complejidad:** Integra los **reportes 10-K** para probar cómo tu sistema maneja documentos muy largos y densos. Aquí es donde estrategias como "Parent Document Retriever" o la creación de resúmenes intermedios se vuelven importantes.
+4.  **Prueba la Síntesis:** Usa **ELI5** para asegurar que tu modelo no solo "copia y pega" fragmentos, sino que puede generar explicaciones coherentes.

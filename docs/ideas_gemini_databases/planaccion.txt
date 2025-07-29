@@ -1,0 +1,9 @@
+  Plan de Acción Sugerido
+
+   1. Crítico: Arregla el bug del caché en PipelineManager (cache_key = f"{collection_name}_{strategy}").
+   2. Alta Prioridad: Refactoriza usando el patrón Strategy para abstraer las lógicas naive y hybrid. Esto te preparará inmediatamente para escalar.
+   3. Buena Práctica: Externaliza el prompt_template a un archivo.
+   4. Mejora de Rendimiento: Cambia tu endpoint a async def.
+   5. Futuro: Implementa las fábricas de componentes (get_llm, get_embedder) cuando estés listo para añadir OpenAI u otros servicios.
+
+  Este conjunto de cambios hará que tu API sea mucho más robusta, escalable y fácil de mantener a largo plazo. ¡Excelente trabajo hasta ahora y mucho éxito con el proyecto

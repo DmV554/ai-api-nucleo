@@ -1,0 +1,36 @@
+[project]
+name = "ai_api_modules"
+version = "0.1.0"
+description = "A modular API for RAG (Retrieval-Augmented Generation) processes."
+authors = [{ name = "Your Name", email = "your@email.com" }]
+readme = "README.md"
+requires-python = ">=3.9"
+
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+    "pydantic-settings",
+    "python-dotenv",
+    "haystack-ai",
+    "chroma-haystack",
+    "qdrant-haystack",
+    "fastembed-haystack",
+    "ollama-haystack",
+    "openai",
+    "sentence-transformers",
+    "scikit-learn",
+    "pandas",
+    "requests",
+    "beautifulsoup4",
+    "trafilatura"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[tool.setuptools.packages.find]
+include = ["src*"]

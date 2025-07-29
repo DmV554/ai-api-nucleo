@@ -1,2 +1,5 @@
 data
 vector_stores
+__pycache__
+ai_api_modules.egg-info
+.env
